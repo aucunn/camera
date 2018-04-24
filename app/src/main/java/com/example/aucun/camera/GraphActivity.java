@@ -24,7 +24,7 @@ public class GraphActivity extends AppCompatActivity {
 
         wristGraph.add(new Entry(5,0));
         wristGraph.add(new Entry(6,1));
-        wristGraph.add(new Entry(7,2)); //영성이 바보2
+        wristGraph.add(new Entry(7,2)); //영성이 바보3
         wristGraph.add(new Entry(8,3));
 
         LineDataSet setComp1 = new LineDataSet(wristGraph,"KBS");
