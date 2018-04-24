@@ -8,6 +8,7 @@ package com.example.aucun.camera;
         import com.github.mikephil.charting.data.Entry;
         import com.github.mikephil.charting.data.LineData;
         import com.github.mikephil.charting.data.LineDataSet;
+        import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
         import java.util.ArrayList;
 
@@ -30,7 +31,20 @@ public class GraphActivity extends AppCompatActivity {
         LineDataSet setComp1 = new LineDataSet(wristGraph,"KBS");
         setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-        ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
+        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setComp1);
+
+        ArrayList<String> xVals = new ArrayList<String>();
+        xVals.add("1.Q");
+        xVals.add("2.Q");
+        xVals.add("3.Q");
+        xVals.add("4.Q");
+
+        LineData data = new LineData(setComp1);
+
+        chart.setData(data);
+        chart.invalidate();
+
+
     }
 }

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onButton3Clicked(View v) {
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(),GraphActivity.class);
         startActivity(intent);
     }
 
