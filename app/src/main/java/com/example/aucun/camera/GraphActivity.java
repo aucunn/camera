@@ -1,7 +1,12 @@
 package com.example.aucun.camera;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+
+        import com.github.mikephil.charting.charts.LineChart;
+        import com.github.mikephil.charting.data.Entry;
+
+        import java.util.ArrayList;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -9,5 +14,11 @@ public class GraphActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
+
+        LineChart chart = (LineChart) findViewById(R.id.chart);
+
+        ArrayList<Entry> wristGraph = new ArrayList<Entry>();
+
+        wristGraph.add(new Entry(5,0));
     }
 }
