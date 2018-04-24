@@ -20,5 +20,9 @@ public class GraphActivity extends AppCompatActivity {
         ArrayList<Entry> wristGraph = new ArrayList<Entry>();
 
         wristGraph.add(new Entry(5,0));
+        wristGraph.add(new Entry(6,1));
+        wristGraph.add(new Entry(7,2));
+        wristGraph.add(new Entry(8,3));
+        
     }
 }
