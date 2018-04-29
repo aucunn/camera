@@ -18,19 +18,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void onButton1Clicked(View v){
-        Toast.makeText(getApplicationContext(), "꺼지시겠습니까??", Toast.LENGTH_SHORT).show(); finish();
 
-    }
 
-    public void onButton2Clicked(View v) {
+    public void onLinkToComputerClicked(View v) {
         Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
         startActivity(intent);
     }
 
-    public void onButton3Clicked(View v) {
+    public void onCheckDateClicked(View v) {
+        Intent intent = new Intent(getApplicationContext(),TESTgraph.class);
+        startActivity(intent);
+    }
+
+    public void onGraphClicked(View v) {
         Intent intent = new Intent(getApplicationContext(),GraphActivity.class);
         startActivity(intent);
+    }
+
+    public void onSettingClicked(View v) {
+        Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
+        startActivity(intent);
+    }
+
+    public void onGOOUTClicked(View v){
+        Toast.makeText(getApplicationContext(), "꺼지시겠습니까??", Toast.LENGTH_SHORT).show(); finish();
+
     }
 
     @Override public void onBackPressed() {  }

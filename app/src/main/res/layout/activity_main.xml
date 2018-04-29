@@ -9,7 +9,7 @@
     <Button
         android:layout_width="219dp"
         android:layout_height="wrap_content"
-        android:onClick="onButton1Clicked"
+        android:onClick="onGOOUTClicked"
         android:text="꺼져"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -22,7 +22,7 @@
         android:id="@+id/button2"
         android:layout_width="219dp"
         android:layout_height="wrap_content"
-        android:onClick="onButton3Clicked"
+        android:onClick="onGraphClicked"
         android:text="그래프"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -36,7 +36,7 @@
         android:id="@+id/button3"
         android:layout_width="219dp"
         android:layout_height="wrap_content"
-        android:onClick="onButton3Clicked"
+        android:onClick="onSettingClicked"
         android:text="settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -49,6 +49,7 @@
         android:id="@+id/button"
         android:layout_width="219dp"
         android:layout_height="wrap_content"
+        android:onClick="onLinkToComputerClicked"
         android:text="컴퓨터와 연동"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -61,6 +62,7 @@
         android:id="@+id/button4"
         android:layout_width="219dp"
         android:layout_height="wrap_content"
+        android:onClick="onCheckDateClicked"
         android:text="날짜확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -71,11 +73,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/images"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="75dp" />
+        android:layout_width="192dp"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.196" />
 
 
 </android.support.constraint.ConstraintLayout>

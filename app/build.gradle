@@ -33,7 +33,10 @@ dependencies {
     implementation files('libs/MPAndroidChart-3.0.3.zip')
 }
 dependencies {
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     implementation 'com.android.support.constraint:constraint-layout:+'
 }
 
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
