@@ -6,30 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="219dp"
-        android:layout_height="wrap_content"
-        android:onClick="onGOOUTClicked"
-        android:text="꺼져"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="219dp"
         android:layout_height="wrap_content"
         android:onClick="onGraphClicked"
-        android:text="그래프"
+        android:text="자세 확인"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
+        app:layout_constraintVertical_bias="0.716" />
 
 
     <Button
@@ -43,7 +32,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.876" />
+        app:layout_constraintVertical_bias="0.809" />
 
     <Button
         android:id="@+id/button"
@@ -56,23 +45,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
+        app:layout_constraintVertical_bias="0.624" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="219dp"
-        android:layout_height="wrap_content"
-        android:onClick="onCheckDateClicked"
-        android:text="날짜확인"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+
 
     <ImageView
         android:id="@+id/imageView"
+        android:src="@drawable/images"
         android:layout_width="192dp"
         android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"

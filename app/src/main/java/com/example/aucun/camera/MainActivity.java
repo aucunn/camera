@@ -8,9 +8,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private BackPressCloseHandler backPressCloseHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        backPressCloseHandler = new BackPressCloseHandler(this);
+
         setContentView(R.layout.activity_main);
     }
 
@@ -20,15 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void onLinkToComputerClicked(View v) {
+    public void onLinkToComputerClicked(View v) {                                                   //컴퓨터 연동 버튼 누를때
         Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
         startActivity(intent);
     }
 
-    public void onCheckDateClicked(View v) {
-        Intent intent = new Intent(getApplicationContext(),TESTgraph.class);
-        startActivity(intent);
-    }
 
     public void onGraphClicked(View v) {
         Intent intent = new Intent(getApplicationContext(),GraphActivity.class);
@@ -40,12 +39,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onGOOUTClicked(View v){
-        Toast.makeText(getApplicationContext(), "꺼지시겠습니까??", Toast.LENGTH_SHORT).show(); finish();
+
+
+
+
+
+
+    @Override public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
+
 
     }
-
-    @Override public void onBackPressed() {  }
 
 
 }
