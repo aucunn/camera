@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.content.ContentValues;
+import android.os.AsyncTask;
 import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private BackPressCloseHandler backPressCloseHandler;
     @Override
@@ -15,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
         backPressCloseHandler = new BackPressCloseHandler(this);
 
         setContentView(R.layout.activity_main);
+
+
+
+
+
     }
 
 
