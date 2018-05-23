@@ -50,6 +50,7 @@ public class GraphActivity extends AppCompatActivity {
     ArrayList<String> dates = new ArrayList<String>();
     ArrayList<Integer> datei = new ArrayList<Integer>();
 
+
     int iii = 0;
 
     @Override
@@ -209,6 +210,7 @@ public class GraphActivity extends AppCompatActivity {
         X_Axis.setGranularity(1);
         X_Axis.setLabelCount(30);
         X_Axis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        X_Axis.setValueFormatter(new DayAxisValueFormatter (chart));
 
 
 
@@ -220,6 +222,13 @@ public class GraphActivity extends AppCompatActivity {
             wristGraph.add(new Entry(dates.get(i), (int)1));
         }
         */
+        int putGraph=0;
+        for(int i =0; i < iii; i++){
+            putGraph = (int)datei.get(i);
+            wristGraph.add(new Entry(i+1, putGraph));
+
+        }
+        /*
         wristGraph.add(new Entry((int)1,(int)1));
         wristGraph.add(new Entry(2,1));
         wristGraph.add(new Entry(3,2)); //영성이 바보3
@@ -227,6 +236,7 @@ public class GraphActivity extends AppCompatActivity {
         wristGraph.add(new Entry(5,3));
         wristGraph.add(new Entry(6,3));
         wristGraph.add(new Entry(7,5));
+        */
 
 
         LineDataSet setComp1 = new LineDataSet(wristGraph,"KBS");

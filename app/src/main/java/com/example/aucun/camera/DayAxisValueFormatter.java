@@ -8,7 +8,7 @@ public class DayAxisValueFormatter implements IAxisValueFormatter
 {
 
     protected String[] mMonths = new String[]{
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"
     };
 
     private LineChart chart;
