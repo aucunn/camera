@@ -48,8 +48,6 @@ public class GraphActivity extends AppCompatActivity {
     CharSequence dateChar = "DateTime";
     DateDic date;
 
-    ArrayList<String> dates = new ArrayList<String>();
-    ArrayList<Integer> datei = new ArrayList<Integer>();
 
 
     int iii = 0;
@@ -204,40 +202,33 @@ public class GraphActivity extends AppCompatActivity {
 
 
         XAxis X_Axis = chart.getXAxis();                                                            //X축 담당
-        X_Axis.setGranularity(1f);
         X_Axis . setDrawAxisLine ( true );
         X_Axis . setDrawGridLines ( false );
         X_Axis.setGranularityEnabled(true);
         X_Axis.setGranularity(1);
-        X_Axis.setLabelCount(30);
         X_Axis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        X_Axis.setValueFormatter(new DayAxisValueFormatter (chart));
+
+        String [] inputData = new String[date.getSize()];
+        for(int i = 0; i < date.getSize(); i++){
+            inputData[i] = date.getDate(i);
+        }
+
+        X_Axis.setValueFormatter(new MyXAxisValueFormatter (inputData));
 
 
 
         ArrayList<Entry> wristGraph = new ArrayList<Entry>();                                           //차트에 값을 집어넣는곳, 디비에서 뭔갈 받아와서 넣어야겟죠??
-/*
-        Entry
-        for (int i = 0; i<iii; i++)
-        {
-            wristGraph.add(new Entry(dates.get(i), (int)1));
-        }
-        */
+
+
         int putGraph=0;
         for(int i =0; i < date.getSize(); i++){
             putGraph = (int)date.getCount(i);
-            wristGraph.add(new Entry(i+1, putGraph));
+            wristGraph.add(new Entry(i, putGraph));
 
         }
-        /*
-        wristGraph.add(new Entry((int)1,(int)1));
-        wristGraph.add(new Entry(2,1));
-        wristGraph.add(new Entry(3,2)); //영성이 바보3
-        wristGraph.add(new Entry(4,3));
-        wristGraph.add(new Entry(5,3));
-        wristGraph.add(new Entry(6,3));
-        wristGraph.add(new Entry(7,5));
-        */
+
+
+
 
 
         LineDataSet setComp1 = new LineDataSet(wristGraph,"KBS");
