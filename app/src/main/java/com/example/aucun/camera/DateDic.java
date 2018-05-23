@@ -9,6 +9,8 @@ public class DateDic {
     private int div;
 
     public DateDic(int div){
+        sdate = new ArrayList<String>();
+        count = new ArrayList<Integer>();
         this.div = div;
     }
 
@@ -31,7 +33,7 @@ public class DateDic {
         if (this.sdate.contains(tmp))//리스트에 있는 날짜인가?
         {
             int tmpi = sdate.indexOf(tmp);//날짜 인덱스
-            sdate.set(tmpi, sdate.get(tmpi) + 1);//날짜의 값 1증가
+            count.set(tmpi, count.get(tmpi) + 1);//날짜의 값 1증가
         } else {
             sdate.add(tmp);//날짜 추가
             count.add(1);

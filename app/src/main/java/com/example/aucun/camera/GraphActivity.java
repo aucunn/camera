@@ -46,6 +46,7 @@ public class GraphActivity extends AppCompatActivity {
     int dateIndex;
     int indexForCount=0;
     CharSequence dateChar = "DateTime";
+    DateDic date;
 
     ArrayList<String> dates = new ArrayList<String>();
     ArrayList<Integer> datei = new ArrayList<Integer>();
@@ -223,8 +224,8 @@ public class GraphActivity extends AppCompatActivity {
         }
         */
         int putGraph=0;
-        for(int i =0; i < iii; i++){
-            putGraph = (int)datei.get(i);
+        for(int i =0; i < date.getSize(); i++){
+            putGraph = (int)date.getCount(i);
             wristGraph.add(new Entry(i+1, putGraph));
 
         }
@@ -262,9 +263,8 @@ public class GraphActivity extends AppCompatActivity {
 
         JSONObject jObj;
 
-
+        date = new DateDic(3);;
         //Map<String, Integer> dic = new HashMap<String, Integer>();
-        DateDic date = new DateDic(2);
 
         try {
             JSONArray jarray = new JSONObject(DB_Date).getJSONArray("webnautes"); // JSON에서 webnautes배열 가져오기
