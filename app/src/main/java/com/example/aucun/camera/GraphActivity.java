@@ -268,7 +268,7 @@ public class GraphActivity extends AppCompatActivity {
 
         try {
             JSONArray jarray = new JSONObject(DB_Date).getJSONArray("webnautes"); // JSON에서 webnautes배열 가져오기
-            int len = jarray.length();//배열길이
+            int len = jarray.length();//배열길이..
 
 
             for (int i = 0; i < len; i++)
