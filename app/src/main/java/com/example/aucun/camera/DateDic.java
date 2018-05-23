@@ -13,11 +13,19 @@ public class DateDic {
     }
 
     public void add(String date){
-        String tmp;
+        String tmp = "";
+
         if (div <= 3) {
-            tmp = date.split("-")[div - 1];
+            String tmp2[] = date.split(" ")[0].split("-");
+            for (int i = 0; i < div; i++){
+                tmp = tmp + tmp2[i];
+            }
         } else {
-            tmp = date.split(" ")[1].split(":")[div - 4];
+            tmp = date.split(" ")[0];
+            String tmp2[] = date.split(" ")[1].split(":");
+            for (int i = 3; i < div; i++){
+                tmp = tmp + tmp2[i - 3];
+            }
         }
 
         if (this.sdate.contains(tmp))//리스트에 있는 날짜인가?

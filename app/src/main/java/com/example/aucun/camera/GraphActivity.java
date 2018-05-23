@@ -264,7 +264,7 @@ public class GraphActivity extends AppCompatActivity {
 
 
         //Map<String, Integer> dic = new HashMap<String, Integer>();
-
+        DateDic date = new DateDic(2);
 
         try {
             JSONArray jarray = new JSONObject(DB_Date).getJSONArray("webnautes"); // JSON에서 webnautes배열 가져오기
@@ -275,18 +275,8 @@ public class GraphActivity extends AppCompatActivity {
             {
                 jObj = jarray.getJSONObject(i);//JSON배열에서 객채 가져오기
                 try {
-                    String tmp = jObj.getString("DateTime").split(" ")[0];//객채(DateTime)에서 " "앞부분만 추출
-                    if (dates.contains(tmp))//리스트에 있는 날짜인가?
-                    {
-                        int tmpi = dates.indexOf(tmp);//날짜 인덱스
-                        datei.set(tmpi, datei.get(tmpi) + 1);//날짜의 값 1증가
-                    }
-                    else
-                    {
-                        dates.add(tmp);//날짜 추가
-                        datei.add(1);
-                        iii++;
-                    }
+                    date.add(jObj.getString("DateTime"));//객채(DateTime)에서 " "앞부분만 추출
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
