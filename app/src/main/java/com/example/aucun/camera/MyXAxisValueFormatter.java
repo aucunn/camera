@@ -9,16 +9,13 @@ public class MyXAxisValueFormatter implements IAxisValueFormatter {
     int counter = 0;
 
     public MyXAxisValueFormatter(String[] values) {
-        this.mValues= new String[values.length];
-        for(int i = 0; i < values.length; i++) {
-            this.mValues = values;
-        }
+        this.mValues= values;
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         // "value" represents the position of the label on the axis (x or y)
-        return mValues[(int) value];
+        return mValues[(int) value % mValues.length];
     }
 
 }

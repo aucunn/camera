@@ -6,6 +6,9 @@ package com.example.aucun.camera;
         import android.support.annotation.NonNull;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.Spinner;
         import android.widget.TextView;
         import com.github.mikephil.charting.charts.LineChart;
         import com.github.mikephil.charting.components.XAxis;
@@ -35,35 +38,43 @@ package com.example.aucun.camera;
         import java.util.Set;
 
 public class GraphActivity extends AppCompatActivity {
-    private TextView tv_outPut;
-    private TextView testView;
+
     String DB_Date ="aa!";
-    String Sub_DB_Date= "";
-    String Sub_DB_Date2= "";
-    StringBuffer Sub_DB_DateBuffer = new StringBuffer(Sub_DB_Date);
-    Calendar cal = Calendar.getInstance();
-    dateCounter dataForGraph = new dateCounter();
-    int dateIndex;
-    int indexForCount=0;
-    CharSequence dateChar = "DateTime";
     DateDic date;
-
-
-
-    int iii = 0;
-
+    int dateType = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
+        Spinner s = (Spinner)findViewById(R.id.dateSetting);
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                dateType = position + 1;
+                ContentValues values1=new ContentValues();
+                values1.put("Unum", 1);
+
+                // URL 설정.
+                String url = "http://124.153.179.11/get_time.php";
+
+                // AsyncTask를 통해 HttpURLConnection 수행.
+                GraphActivity.NetworkTask networkTask = new GraphActivity.NetworkTask(url, values1);
+                networkTask.execute();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         ContentValues values1=new ContentValues();
         values1.put("Unum", 1);
-        // 위젯에 대한 참조.
-        tv_outPut = (TextView) findViewById(R.id.tv_outPut);
-
-
 
         // URL 설정.
         String url = "http://124.153.179.11/get_time.php";
@@ -72,78 +83,6 @@ public class GraphActivity extends AppCompatActivity {
         GraphActivity.NetworkTask networkTask = new GraphActivity.NetworkTask(url, values1);
         networkTask.execute();
 
-
-
-
-
-        //------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-        //------------------------------------------------------------------------------------------
-/*
-        LineChart chart = (LineChart) findViewById(R.id.chart);                                     //차트를 만듭니다~~  차트의 기본 설정을 하는곳이에요
-        chart.setTouchEnabled(false);
-
-        YAxis noPight = chart.getAxisRight();                                                       //오른쪽 y축 무력화
-        noPight.setEnabled(false);
-
-        YAxis Y_Axis = chart.getAxisLeft();                                                         //Y축 담당
-
-        Y_Axis.setDrawZeroLine(true);
-        Y_Axis.setGranularityEnabled(true);
-        Y_Axis.setAxisMinimum(0f);
-        Y_Axis.setDrawGridLines(true);
-        Y_Axis.setDrawAxisLine(true);
-        Y_Axis.setLabelCount(10);
-
-
-
-        XAxis X_Axis = chart.getXAxis();                                                            //X축 담당
-        X_Axis.setGranularity(1f);
-        X_Axis . setDrawAxisLine ( true );
-        X_Axis . setDrawGridLines ( false );
-        X_Axis.setGranularityEnabled(true);
-        X_Axis.setGranularity(1);
-        X_Axis.setLabelCount(30);
-        X_Axis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
-
-
-        ArrayList<Entry> wristGraph = new ArrayList<Entry>();                                           //차트에 값을 집어넣는곳, 디비에서 뭔갈 받아와서 넣어야겟죠??
-
-        wristGraph.add(new Entry((int)1,(int)1));
-        wristGraph.add(new Entry(2,1));
-        wristGraph.add(new Entry(3,2)); //영성이 바보3
-        wristGraph.add(new Entry(4,3));
-        wristGraph.add(new Entry(5,3));
-        wristGraph.add(new Entry(6,3));
-        wristGraph.add(new Entry(7,5));
-
-
-        LineDataSet setComp1 = new LineDataSet(wristGraph,"KBS");
-        setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(setComp1);
-
-        ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("1.Q");
-        xVals.add("2.Q");
-        xVals.add("3.Q");
-        xVals.add("4.Q");
-
-        LineData data = new LineData(setComp1);
-
-        chart.setData(data);
-        chart.invalidate();
-*/
 
     }
 
@@ -173,10 +112,7 @@ public class GraphActivity extends AppCompatActivity {
             super.onPostExecute(s);
 
             //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
-            tv_outPut.setText(s);
             DB_Date = s;
-            testView = (TextView) findViewById(R.id.testNum);
-            testView.setText(DB_Date);
             analyzeDB();
             nextExec();
         }
@@ -254,7 +190,7 @@ public class GraphActivity extends AppCompatActivity {
 
         JSONObject jObj;
 
-        date = new DateDic(3);;
+        date = new DateDic(dateType);;
         //Map<String, Integer> dic = new HashMap<String, Integer>();
 
         try {
@@ -277,25 +213,6 @@ public class GraphActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-        /*
-        dateIndex = 0;
-
-        if(DB_Date.contains(dateChar)) {
-            while (true) {
-                indexForCount = DB_Date.length();
-                dateIndex = DB_Date.indexOf("DateTime", dateIndex);
-                if(dateIndex == -1) break;
-                Sub_DB_Date = DB_Date.substring(dateIndex+12, dateIndex+22);
-                dataForGraph.putDate(Sub_DB_Date, dataForGraph);
-
-                dateIndex = dateIndex+8;
-                if(dateIndex >= DB_Date.length()) break ;
-
-            }
-        }
-        */
     }
 
 }

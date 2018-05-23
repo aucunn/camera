@@ -16,17 +16,22 @@ public class DateDic {
 
     public void add(String date){
         String tmp = "";
+        String dateString[] = {"년 ", "월 ", "일 ", ":", ":", ":"};
 
         if (div <= 3) {
             String tmp2[] = date.split(" ")[0].split("-");
             for (int i = 0; i < div; i++){
-                tmp = tmp + tmp2[i];
+                tmp = tmp + tmp2[i] + dateString[i];
             }
         } else {
-            tmp = date.split(" ")[0];
-            String tmp2[] = date.split(" ")[1].split(":");
+            String tmp2[] = date.split(" ");
+            for (int i = 0; i < 3; i++){
+                tmp = tmp + tmp2[0].split("-")[i] + dateString[i];
+            }
+            tmp = tmp + " ";
+            tmp2 = date.split(" ")[1].split(":");
             for (int i = 3; i < div; i++){
-                tmp = tmp + tmp2[i - 3];
+                tmp = tmp + dateString[i + 3] + tmp2[i - 3];
             }
         }
 
@@ -41,7 +46,6 @@ public class DateDic {
         }
 
     }
-
     public String getDate(int index){
         return sdate.get(index);
     }
