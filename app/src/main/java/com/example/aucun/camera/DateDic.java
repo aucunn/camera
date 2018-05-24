@@ -16,7 +16,7 @@ public class DateDic {
 
     public void add(String date){
         String tmp = "";
-        String dateString[] = {"년 ", "월 ", "일 ", ":", ":", ":"};
+        String dateString[] = {"년 ", "월 ", "일 ", ":", ":", ":", ":"};
 
         if (div <= 3) {
             String tmp2[] = date.split(" ")[0].split("-");
@@ -48,6 +48,7 @@ public class DateDic {
     }
     public String getDate(int index){
         return sdate.get(index);
+
     }
     public int getCount(int index){
         return count.get(index);
@@ -56,4 +57,5 @@ public class DateDic {
     public int getSize(){
         return this.size;
     }
+
 }

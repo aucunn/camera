@@ -1,6 +1,8 @@
 package com.example.aucun.camera;
 
+        import android.app.DatePickerDialog;
         import android.content.ContentValues;
+        import android.content.Intent;
         import android.os.AsyncTask;
         import android.os.DropBoxManager;
         import android.support.annotation.NonNull;
@@ -8,8 +10,11 @@ package com.example.aucun.camera;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.AdapterView;
+        import android.widget.DatePicker;
         import android.widget.Spinner;
         import android.widget.TextView;
+        import android.widget.Toast;
+
         import com.github.mikephil.charting.charts.LineChart;
         import com.github.mikephil.charting.components.XAxis;
         import com.github.mikephil.charting.components.YAxis;
@@ -42,12 +47,22 @@ public class GraphActivity extends AppCompatActivity {
     String DB_Date ="aa!";
     DateDic date;
     int dateType = 1;
+    DatePickerDialog dialog;
+    int dateTime[] = new int[3];
+    boolean flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
+        dialog = new DatePickerDialog(this, listener, 2018, 05, 24);
+
+
+        dateTime[0] = 2018;
+        dateTime[1] = 05;
+        dateTime[2] = 24;
         Spinner s = (Spinner)findViewById(R.id.dateSetting);
 
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -56,8 +71,18 @@ public class GraphActivity extends AppCompatActivity {
 
                 dateType = position + 1;
                 ContentValues values1=new ContentValues();
-                values1.put("Unum", 1);
-
+                values1.clear();
+                values1.put("Stime", "2018-01-01");
+                values1.put("Etime", "2018-07-01");
+                values1.put("Unum", 1);/*
+                values1.put("Stime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
+                if (dateType == 1)
+                    values1.put("Etime", String.valueOf(dateTime[0] + 1) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
+                if (dateType == 2)
+                    values1.put("Etime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1] + 1) + "-" + String.valueOf(dateTime[2]));
+                if (dateType == 3)
+                    values1.put("Etime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2] + 1));
+*/
                 // URL 설정.
                 String url = "http://124.153.179.11/get_time.php";
 
@@ -67,15 +92,27 @@ public class GraphActivity extends AppCompatActivity {
 
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
-        ContentValues values1=new ContentValues();
-        values1.put("Unum", 1);
 
+        ContentValues values1=new ContentValues();
+        values1.clear();
+        values1.put("Stime", "2018-01-01");
+        values1.put("Etime", "2018-07-01");
+        values1.put("Unum", 1);/*
+        values1.put("Stime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
+        if (dateType == 1)
+            values1.put("Etime", String.valueOf(dateTime[0] + 1) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
+        if (dateType == 2)
+            values1.put("Etime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1] + 1) + "-" + String.valueOf(dateTime[2]));
+        if (dateType == 3)
+            values1.put("Etime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2] + 1));
+*/
         // URL 설정.
         String url = "http://124.153.179.11/get_time.php";
 
@@ -83,8 +120,42 @@ public class GraphActivity extends AppCompatActivity {
         GraphActivity.NetworkTask networkTask = new GraphActivity.NetworkTask(url, values1);
         networkTask.execute();
 
-
     }
+
+    public void selDate(View v) {
+        dialog.show();
+    }
+
+    private DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            dateTime[0] = year;
+            dateTime[1] = monthOfYear;
+            dateTime[2] = dayOfMonth;
+
+            ContentValues values1=new ContentValues();
+            values1.clear();
+            values1.put("Unum", 1);
+            values1.put("Stime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
+            if (dateType == 1)
+                values1.put("Etime", String.valueOf(dateTime[0] + 1) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
+            if (dateType == 2)
+                values1.put("Etime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1] + 1) + "-" + String.valueOf(dateTime[2]));
+            if (dateType == 3)
+                values1.put("Etime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2] + 1));
+            // URL 설정.
+            String url = "http://124.153.179.11/get_time.php";
+
+            // AsyncTask를 통해 HttpURLConnection 수행.
+            GraphActivity.NetworkTask networkTask = new GraphActivity.NetworkTask(url, values1);
+            networkTask.execute();
+
+        }
+
+    };
 
     public class NetworkTask extends AsyncTask<Void, Void, String> {
 
@@ -103,7 +174,6 @@ public class GraphActivity extends AppCompatActivity {
             String result; // 요청 결과를 저장할 변수.
             RequestHttpConnection requestHttpURLConnection = new RequestHttpConnection();
             result = requestHttpURLConnection.request(url, values); // 해당 URL로 부터 결과물을 얻어온다.
-
             return result;
         }
 
@@ -114,9 +184,11 @@ public class GraphActivity extends AppCompatActivity {
             //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
             DB_Date = s;
             analyzeDB();
-            nextExec();
+            if (flag)
+                nextExec();
         }
     }
+
 
     void nextExec()
     {
@@ -173,12 +245,6 @@ public class GraphActivity extends AppCompatActivity {
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(setComp1);
 
-        ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("1.Q");
-        xVals.add("2.Q");
-        xVals.add("3.Q");
-        xVals.add("4.Q");
-
         LineData data = new LineData(setComp1);
 
         chart.setData(data);
@@ -198,16 +264,20 @@ public class GraphActivity extends AppCompatActivity {
             int len = jarray.length();//배열길이..
 
 
-            for (int i = 0; i < len; i++)
-            {
-                jObj = jarray.getJSONObject(i);//JSON배열에서 객채 가져오기
-                try {
-                    date.add(jObj.getString("DateTime"));//객채(DateTime)에서 " "앞부분만 추출
+            if (len == 0)
+                flag = false;
+            else {
+                for (int i = 0; i < len; i++) {
+                    jObj = jarray.getJSONObject(i);//JSON배열에서 객채 가져오기
+                    try {
+                        date.add(jObj.getString("DateTime"));//객채(DateTime)에서 " "앞부분만 추출
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+                flag = true;
             }
         } catch (JSONException e) {
             e.printStackTrace();
