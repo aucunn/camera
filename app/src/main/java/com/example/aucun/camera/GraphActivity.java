@@ -16,6 +16,7 @@ package com.example.aucun.camera;
         import android.widget.Toast;
 
         import com.github.mikephil.charting.charts.LineChart;
+        import com.github.mikephil.charting.components.LimitLine;
         import com.github.mikephil.charting.components.XAxis;
         import com.github.mikephil.charting.components.YAxis;
         import com.github.mikephil.charting.data.Entry;
@@ -198,6 +199,22 @@ public class GraphActivity extends AppCompatActivity {
         LineChart chart = (LineChart) findViewById(R.id.chart);                                     //차트를 만듭니다~~  차트의 기본 설정을 하는곳이에요
         chart.setTouchEnabled(false);
 
+        /////////////////////////////////////////////////////////////////////////////////////성교//
+        // Danger
+        LimitLine upper_limit = new LimitLine(15f, "디스크 위험");
+        upper_limit.setLineWidth(1f);
+        upper_limit.enableDashedLine(10f, 10f, 0f);
+        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+        upper_limit.setTextSize(13f);
+
+        // Health
+        LimitLine lower_limit = new LimitLine(5f, "건강");
+        lower_limit.setLineWidth(1f);
+        lower_limit.enableDashedLine(10f, 10f, 0f);
+        lower_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        lower_limit.setTextSize(13f);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
         YAxis noPight = chart.getAxisRight();                                                       //오른쪽 y축 무력화
         noPight.setEnabled(false);
 
@@ -209,6 +226,9 @@ public class GraphActivity extends AppCompatActivity {
         Y_Axis.setDrawGridLines(true);
         Y_Axis.setDrawAxisLine(true);
         Y_Axis.setLabelCount(10);
+
+        Y_Axis.addLimitLine(upper_limit);
+        Y_Axis.addLimitLine(lower_limit);
 
 
 
