@@ -50,6 +50,7 @@ public class GraphActivity extends AppCompatActivity {
     DatePickerDialog dialog;
     int dateTime[] = new int[3];
     boolean flag;
+    Intent getIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class GraphActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
+
+        getIntent = getIntent();
         dialog = new DatePickerDialog(this, listener, 2018, 05, 24);
 
 
@@ -74,7 +77,7 @@ public class GraphActivity extends AppCompatActivity {
                 values1.clear();
                 values1.put("Stime", "2018-01-01");
                 values1.put("Etime", "2018-07-01");
-                values1.put("Unum", 1);/*
+                values1.put("Unum", getIntent.getStringExtra("userNum"));/*
                 values1.put("Stime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
                 if (dateType == 1)
                     values1.put("Etime", String.valueOf(dateTime[0] + 1) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
@@ -104,7 +107,7 @@ public class GraphActivity extends AppCompatActivity {
         values1.clear();
         values1.put("Stime", "2018-01-01");
         values1.put("Etime", "2018-07-01");
-        values1.put("Unum", 1);/*
+        values1.put("Unum", getIntent.getStringExtra("userNum"));/*
         values1.put("Stime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
         if (dateType == 1)
             values1.put("Etime", String.valueOf(dateTime[0] + 1) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
@@ -138,7 +141,7 @@ public class GraphActivity extends AppCompatActivity {
 
             ContentValues values1=new ContentValues();
             values1.clear();
-            values1.put("Unum", 1);
+            values1.put("Unum", getIntent.getStringExtra("userNum"));
             values1.put("Stime", String.valueOf(dateTime[0]) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
             if (dateType == 1)
                 values1.put("Etime", String.valueOf(dateTime[0] + 1) + "-" + String.valueOf(dateTime[1]) + "-" + String.valueOf(dateTime[2]));
@@ -258,7 +261,7 @@ public class GraphActivity extends AppCompatActivity {
 
         date = new DateDic(dateType);;
         //Map<String, Integer> dic = new HashMap<String, Integer>();
-
+//
         try {
             JSONArray jarray = new JSONObject(DB_Date).getJSONArray("webnautes"); // JSON에서 webnautes배열 가져오기
             int len = jarray.length();//배열길이..

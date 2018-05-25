@@ -8,18 +8,33 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="352dp"
-        android:layout_height="220dp"
+        android:layout_width="382dp"
+        android:layout_height="138dp"
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="경고음을 설정합니다." />
 
     <RadioGroup
-        android:layout_width="142dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="302dp">
+        android:layout_width="197dp"
+        android:layout_height="302dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.459">
 
         <RadioButton
             android:id="@+id/radioButton5"
@@ -49,11 +64,5 @@
             android:layout_weight="1"
             android:text="소리4" />
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="소리5" />
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>

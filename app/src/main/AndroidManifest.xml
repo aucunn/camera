@@ -18,27 +18,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         android:theme="@style/Theme.AppCompat.NoActionBar"
-        <activity android:name=".Start">
-
-        </activity>
+        <activity android:name=".Start" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <!-- Include the AdActivity configChanges and theme. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".GraphActivity"
-            android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".GraphActivity"
+            android:screenOrientation="landscape">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".activity_login" >
+
+        </activity>
+        <activity android:name=".activity_enroll"></activity>
     </application>
-
-
 
 </manifest>
