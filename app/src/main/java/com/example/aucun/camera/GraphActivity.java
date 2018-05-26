@@ -161,7 +161,7 @@ public class GraphActivity extends AppCompatActivity {
 
     };
 
-    public class NetworkTask extends AsyncTask<Void, Void, String> {
+    public static class NetworkTask extends AsyncTask<Void, Void, String> {
 
         private String url;
         private ContentValues values;
@@ -186,10 +186,7 @@ public class GraphActivity extends AppCompatActivity {
             super.onPostExecute(s);
 
             //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
-            DB_Date = s;
-            analyzeDB();
-            if (flag)
-                nextExec();
+
         }
     }
 
@@ -201,14 +198,14 @@ public class GraphActivity extends AppCompatActivity {
 
         /////////////////////////////////////////////////////////////////////////////////////성교//
         // Danger
-        LimitLine upper_limit = new LimitLine(15f, "디스크 위험");
+        LimitLine upper_limit = new LimitLine(50f/dateType, "디스크 위험");
         upper_limit.setLineWidth(1f);
         upper_limit.enableDashedLine(10f, 10f, 0f);
         upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
         upper_limit.setTextSize(13f);
 
         // Health
-        LimitLine lower_limit = new LimitLine(5f, "건강");
+        LimitLine lower_limit = new LimitLine(10f/dateType, "건강");
         lower_limit.setLineWidth(1f);
         lower_limit.enableDashedLine(10f, 10f, 0f);
         lower_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
@@ -227,6 +224,7 @@ public class GraphActivity extends AppCompatActivity {
         Y_Axis.setDrawAxisLine(true);
         Y_Axis.setLabelCount(10);
 
+        Y_Axis.removeAllLimitLines();
         Y_Axis.addLimitLine(upper_limit);
         Y_Axis.addLimitLine(lower_limit);
 
