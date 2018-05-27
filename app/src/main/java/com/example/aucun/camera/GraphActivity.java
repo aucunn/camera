@@ -1,47 +1,46 @@
 package com.example.aucun.camera;
 
-        import android.app.DatePickerDialog;
-        import android.content.ContentValues;
-        import android.content.Intent;
-        import android.os.AsyncTask;
-        import android.os.DropBoxManager;
-        import android.support.annotation.NonNull;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.DatePicker;
-        import android.widget.Spinner;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.DropBoxManager;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.github.mikephil.charting.charts.LineChart;
-        import com.github.mikephil.charting.components.LimitLine;
-        import com.github.mikephil.charting.components.XAxis;
-        import com.github.mikephil.charting.components.YAxis;
-        import com.github.mikephil.charting.data.Entry;
-        import com.github.mikephil.charting.data.LineData;
-        import com.github.mikephil.charting.data.LineDataSet;
-        import com.github.mikephil.charting.formatter.IValueFormatter;
-        import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-        import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-        import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
-        import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        import java.lang.Object;
-        import java.text.ParseException;
-        import java.text.SimpleDateFormat;
-        import java.util.Calendar;
-        import java.util.Collection;
-        import java.util.Date;
-        import java.util.HashMap;
-        import java.util.Map;
-        import java.text.DecimalFormat;
-        import java.util.ArrayList;
-        import java.util.Set;
+import java.lang.Object;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -161,7 +160,7 @@ public class GraphActivity extends AppCompatActivity {
 
     };
 
-    public static class NetworkTask extends AsyncTask<Void, Void, String> {
+    public class NetworkTask extends AsyncTask<Void, Void, String> {
 
         private String url;
         private ContentValues values;
@@ -186,7 +185,10 @@ public class GraphActivity extends AppCompatActivity {
             super.onPostExecute(s);
 
             //doInBackground()로 부터 리턴된 값이 onPostExecute()의 매개변수로 넘어오므로 s를 출력한다.
-
+            DB_Date = s;
+            analyzeDB();
+            if (flag)
+                nextExec();
         }
     }
 
@@ -195,22 +197,6 @@ public class GraphActivity extends AppCompatActivity {
     {
         LineChart chart = (LineChart) findViewById(R.id.chart);                                     //차트를 만듭니다~~  차트의 기본 설정을 하는곳이에요
         chart.setTouchEnabled(false);
-
-        /////////////////////////////////////////////////////////////////////////////////////성교//
-        // Danger
-        LimitLine upper_limit = new LimitLine(50f/dateType, "디스크 위험");
-        upper_limit.setLineWidth(1f);
-        upper_limit.enableDashedLine(10f, 10f, 0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        upper_limit.setTextSize(13f);
-
-        // Health
-        LimitLine lower_limit = new LimitLine(10f/dateType, "건강");
-        lower_limit.setLineWidth(1f);
-        lower_limit.enableDashedLine(10f, 10f, 0f);
-        lower_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        lower_limit.setTextSize(13f);
-        ////////////////////////////////////////////////////////////////////////////////////////////
 
         YAxis noPight = chart.getAxisRight();                                                       //오른쪽 y축 무력화
         noPight.setEnabled(false);
@@ -223,10 +209,6 @@ public class GraphActivity extends AppCompatActivity {
         Y_Axis.setDrawGridLines(true);
         Y_Axis.setDrawAxisLine(true);
         Y_Axis.setLabelCount(10);
-
-        Y_Axis.removeAllLimitLines();
-        Y_Axis.addLimitLine(upper_limit);
-        Y_Axis.addLimitLine(lower_limit);
 
 
 
@@ -307,8 +289,6 @@ public class GraphActivity extends AppCompatActivity {
     }
 
 }
-
-
 
 
 
